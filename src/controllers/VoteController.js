@@ -1,6 +1,8 @@
 const Bot = require('../models/Bot')
 const User = require('../models/User')
 
+const client = require('../config/discord')
+
 const voteTime = 43200000
 
 module.exports = {
@@ -22,7 +24,9 @@ module.exports = {
 
     bot.votes.push({ user: user.id })
 
-    await bot.save()
+		await bot.save()
+		
+		client.channels.cache.get('681451097688244254').send(`<a:birdUpvote:698941695034916905> <@${user.id}> votou no bot <@${bot.id}>`)
 
     return res.json({ success: true })
   },
