@@ -11,6 +11,8 @@ mongoose.connect(process.env.MONGOOSE_URI, {
   useUnifiedTopology: true
 })
 
+app.disable('x-powered-by')
+
 app.use(cors())
 app.use(express.json())
 
