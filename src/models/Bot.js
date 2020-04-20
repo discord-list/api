@@ -9,6 +9,10 @@ const BotSchema = new mongoose.Schema({
     type: String,
     required: true
   },
+  lang: {
+    type: String,
+    required: true
+  },
   bibl: {
     type: String,
     required: true
@@ -21,7 +25,7 @@ const BotSchema = new mongoose.Schema({
     type: String,
     required: true
   },
-  tags: [String],
+  tags: [Number],
   invite: String,
   website: String,
   github: String,

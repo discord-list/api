@@ -3,6 +3,8 @@ const User = require('../models/User')
 
 const client = require('../config/discord')
 
+const tags = require('../tags.json')
+
 module.exports = {
   async store(req, res) {
     const { owner, prefix, bibl, shortDescription, description, tags, invite, website, github, server, id } = req.body
@@ -50,6 +52,8 @@ module.exports = {
     bot._doc.status = info.presence.status
     bot._doc.streaming = info.presence.activities.length > 0 && info.presence.activities[0].type === "STREAMING"
 
+    bot._doc.tags = bot.tags.map(t => tags[bot.lang][t])
+
     if (!bot.invite) bot.invite = `https://discordapp.com/oauth2/authorize?client_id=${bot.id}&scope=bot`
 
     return res.json(bot)
@@ -61,7 +65,8 @@ module.exports = {
     for (let i = 0; i < bots.length; i++) {
       bots[i]._doc._id = undefined
       bots[i]._doc.__v = undefined
-	    bots[i]._doc.votes = bots[i].votes.length
+      bots[i]._doc.votes = bots[i].votes.length
+      bots[i]._doc.tags = bots[i].tags.map(t => tags[bots[i].lang][t])
 
       let info
 
