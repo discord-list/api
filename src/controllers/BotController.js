@@ -88,7 +88,7 @@ module.exports = {
   },
 
   async update(req, res) {
-    const { prefix, shortDescription, description, tags, invite, website, github, server } = req.body
+    const { prefix, shortDescription, description, tags, invite, website, github, server, lang } = req.body
     const { user_id, bot } = req.headers
 
     const user = await User.findById(user_id)
@@ -103,6 +103,7 @@ module.exports = {
     if (prefix) botinfo.prefix = prefix
     if (shortDescription) botinfo.shortDescription = shortDescription
     if (description) botinfo.description = description
+    if (lang) botinfo.lang = lang
 
     if (tags !== undefined) botinfo.tags = tags
     if (invite !== undefined) botinfo.invite = invite
