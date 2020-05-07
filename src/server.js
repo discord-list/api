@@ -19,3 +19,7 @@ app.use(express.json())
 app.use(require('./routes'))
 
 app.listen(process.env.PORT)
+
+app.use((req, res) => {
+  res.status(404).json({ error: 404, message: "not-found" })
+})
