@@ -7,7 +7,7 @@ const tags = require('../tags.json')
 
 module.exports = {
   async store(req, res) {
-    const { owner, prefix, bibl, shortDescription, description, tags, invite, website, github, server, id } = req.body
+    const { owner, prefix, bibl, shortDescription, description, tags, invite, website, github, server, lang, id } = req.body
 
 	let botinfo
 
@@ -24,7 +24,7 @@ module.exports = {
 
     const user = await User.findById(owner)
 
-    bot = await Bot.create({ owner: user.id, prefix, bibl, shortDescription, description, tags, invite, website, github, server, id })
+    bot = await Bot.create({ owner: user.id, prefix, bibl, shortDescription, description, tags, invite, website, github, server, lang, id })
 	
 	const channel = client.channels.cache.get('681451097688244254')
 	
